@@ -1,0 +1,6 @@
+# Need Python 3.10 or higher
+pytest
+requests
+pyaml
+lark
+selenium

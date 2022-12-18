@@ -1,0 +1,15 @@
+1670733379028	geckodriver	INFO	Listening on 127.0.0.1:37289
+1670733379031	mozrunner::runner	INFO	Running command: "/usr/local/bin/firefox" "--marionette" "--remote-debugging-port" "47657" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile2K6C3C"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1670733379539	Marionette	INFO	Marionette enabled
+1670733379542	Marionette	INFO	Listening on port 45279
+ATTENTION: default value of option mesa_glthread overridden by environment.
+Read port: 45279
+WebDriver BiDi listening on ws://127.0.0.1:47657
+1670733379684	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile2K6C3C/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:47657/devtools/browser/4edfc77f-eeb2-4a7d-8e39-2a4b239a79e9
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost."
+1670733386250	Marionette	INFO	Stopped listening on port 45279
