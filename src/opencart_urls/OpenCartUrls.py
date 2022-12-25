@@ -1,3 +1,5 @@
 class OpenCartUrls:
-    main_page = "http://localhost/en-gb?route=common/home"
+    main_page = "http://localhost/"
     register_page = "http://localhost/en-gb?route=account/register"
+    administration = "http://localhost/administration/"
+

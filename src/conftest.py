@@ -1,6 +1,9 @@
 import pytest
 from selenium import webdriver
 
+import opencart_urls
+from locators import admin_page as ap
+
 
 def pytest_addoption(parser):
     parser.addoption('--browser', '-B', action='store', default='chrome', help='Choose Browser')
