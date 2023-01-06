@@ -3,7 +3,7 @@ import csv
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from src.opencart_urls import OpenCartUrls
-from src.locators.register_page import RegisterPage
+from src.locators.RegPageSelectors import RegisterPage
 
 
 def test_register_new_user(request, browser_handler, create_new_user):

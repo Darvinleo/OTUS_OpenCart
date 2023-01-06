@@ -6,7 +6,7 @@ Just a first probe, need to reformat for admin
 import time
 from random import choice
 from selenium.webdriver.common.by import By
-from src.locators.main_page import MainPage
+from src.locators.MainPageSelectors import MainPage
 from src.opencart_urls import OpenCartUrls
 
 

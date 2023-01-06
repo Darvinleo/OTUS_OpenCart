@@ -1,1 +1,1 @@
-from .OpenCartUrls import OpenCartUrls
+from .Urls import Urls

@@ -1,2 +1,3 @@
-from .main_page import MainPage
-from .register_page import RegisterPage
+from .MainPageSelectors import MainPageSelectors
+from .RegPageSelectors import RegPageSelectors
+from .AdminSelectors import AdminSelectors

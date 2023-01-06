@@ -1,6 +1,6 @@
 import csv
 from random import randint
-from src.locators.register_page import RegisterPage
+from src.locators.RegPageSelectors import RegisterPage
 from selenium import webdriver
 
 chrome = webdriver.Chrome()

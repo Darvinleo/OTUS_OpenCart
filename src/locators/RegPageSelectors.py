@@ -1,7 +1,7 @@
-from .common_selectors import el_id, css
+from .CommonSelectors import el_id, css
 
 
-class RegisterPage:
+class RegPageSelectors:
     """Describing locators for Register Page"""
 
     class PersonalDetails:
