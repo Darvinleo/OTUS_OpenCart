@@ -1,4 +1,4 @@
-from .CommonSelectors import *
+from .common_selectors import *
 
 
 class RegPageSelectors:

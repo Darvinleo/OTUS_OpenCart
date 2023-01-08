@@ -1,4 +1,4 @@
-from .CommonSelectors import *
+from .common_selectors import css, link_text, el_id
 
 
 class MainPageSelectors:
@@ -8,6 +8,7 @@ class MainPageSelectors:
         admin_links = (css, "#top .float-end ul > li")
         login_btn = (link_text, "Login")
         register_btn = (link_text, "Register")
+        logout_btn = (link_text, "Logout")
 
     class Header:
         logo = (el_id, "logo")
@@ -25,3 +26,4 @@ class MainPageSelectors:
     class Footer:
         footer_blocks = (css, "footer > div > div")
         footer_bottom = (css, "footer > div > p")
+        

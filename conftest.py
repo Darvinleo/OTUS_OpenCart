@@ -6,7 +6,7 @@ def pytest_addoption(parser):
     parser.addoption('--browser', '-B', action='store', default='chrome', help='Choose Browser')
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope='function')
 def driver(request):
     """Start chosen browser and close after work"""
     browser = request.config.getoption('browser')

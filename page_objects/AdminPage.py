@@ -5,6 +5,7 @@ from .BasePage import BasePage
 
 class AdminPage(BasePage):
     """Describing administration page in PageObject style"""
+
     def open(self):
         self.driver.get(Urls.administration)
         return AdminPage(self.driver)
@@ -27,12 +28,23 @@ class AdminPage(BasePage):
     def filter_product(self, name='', model='', price='', quantity: int = 0, status=''):
         self._input(AdminSelectors.Filter.product_name, name)
         self._click(AdminSelectors.Filter.button_filter)
+        self._wait_for_presence(AdminSelectors.Filter.filtered_products)
         return AdminPage(self.driver)
 
     def get_filtered_products_list(self):
-        self._wait_for_presence(AdminSelectors.Filter.filtered_products)
         raw_list = self.driver.find_elements(*AdminSelectors.Filter.filtered_products)
         return [x.text[:-8] for x in raw_list if x.text.endswith("\nEnabled")]
+
+    def select_first_filtered_checkbox(self):
+        self._wait_for_presence(AdminSelectors.Filter.filtered_checkbox)
+        self._click(AdminSelectors.Filter.filtered_checkbox, 1)
+
+    def del_selected_products(self):
+        self._wait_for_presence(AdminSelectors.AddProduct.del_btn)
+        self._click(AdminSelectors.AddProduct.del_btn)
+        self.driver.switch_to.alert.accept()
+    def get_alert_text(self):
+        return self._get_element_text(AdminSelectors.AddProduct.alert)
 
     class AddNewProduct(BasePage):
 
@@ -55,5 +67,3 @@ class AdminPage(BasePage):
             self._click(AdminSelectors.AddProduct.save_btn)
             return AdminPage.AddNewProduct(self.driver)
 
-        def get_alert_text(self):
-            return self._get_element_text(AdminSelectors.AddProduct.alert)

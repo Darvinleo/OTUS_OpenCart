@@ -1,4 +1,4 @@
-from .CommonSelectors import *
+from .common_selectors import *
 
 
 class AdminSelectors:
@@ -18,7 +18,9 @@ class AdminSelectors:
 
     class AddProduct:
         save_btn = (xpath, "//*[@id='content'] /div/div/div/button[@type='submit']")
+        del_btn = (class_name, "btn-danger")
         alert = (css, "div.alert-dismissible")
+
         class General:
             general_tab = (xpath, "//*[@href='#tab-general']")
             product_name = (el_id, "input-name-1")
@@ -37,3 +39,4 @@ class AdminSelectors:
         product_name = (css, "input#input-name")
         button_filter = (css, "button#button-filter")
         filtered_products = (css, "tbody td[class=text-start]")
+        filtered_checkbox = (css, "input.form-check-input")

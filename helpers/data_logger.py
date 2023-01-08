@@ -1,6 +1,5 @@
 import csv
-import pathlib
-from config.definitions import ROOT_DIR
+from config import ROOT_DIR
 
 
 def data_logger(data, log_name) -> None:
