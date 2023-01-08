@@ -1,10 +1,10 @@
-from src.locators import AdminSelectors
-from src.opencart_urls import Urls
+from locators import AdminSelectors
+from opencart_urls import Urls
 from .BasePage import BasePage
 
 
 class AdminPage(BasePage):
-
+    """Describing administration page in PageObject style"""
     def open(self):
         self.driver.get(Urls.administration)
         return AdminPage(self.driver)
@@ -54,3 +54,6 @@ class AdminPage(BasePage):
         def admin_save_new_item(self):
             self._click(AdminSelectors.AddProduct.save_btn)
             return AdminPage.AddNewProduct(self.driver)
+
+        def get_alert_text(self):
+            return self._get_element_text(AdminSelectors.AddProduct.alert)

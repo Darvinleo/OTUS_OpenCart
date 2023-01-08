@@ -1,4 +1,4 @@
-from .CommonSelectors import el_id, css
+from .CommonSelectors import *
 
 
 class RegPageSelectors:
@@ -15,3 +15,4 @@ class RegPageSelectors:
     agree = (css, "input[name=agree]")
     submit_btn = (css, "button[type=submit]")
     alert = (css, "#alert div")
+    common_success = (el_id, "common-success")

@@ -1,10 +1,12 @@
-from .CommonSelectors import css, el_id, link_text
+from .CommonSelectors import *
 
 
 class MainPageSelectors:
+    alert = (css, "div.alert-dismissible")
     class TopNav:
         nav_float_start = (css, "div.nav.float-start")
         admin_links = (css, "#top .float-end ul > li")
+        login_btn = (link_text, "Login")
         register_btn = (link_text, "Register")
 
     class Header:

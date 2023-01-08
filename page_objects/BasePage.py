@@ -9,7 +9,8 @@ class BasePage:
 
     def __element(self, selector: tuple, index: int = 0):
         """return element by chosen search strategy"""
-        return self.driver.find_elements(*selector)[index]
+        element = self.driver.find_elements(*selector)
+        return f"Can't find element with locator {selector}" if element == [] else element[index]
 
     def _click(self, selector, index=0):
         """click on selected element"""

@@ -1,6 +1,6 @@
 import pytest
-from src.opencart_urls import Urls
-from src.locators import AdminSelectors
+from opencart_urls import Urls
+from locators import AdminSelectors
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
