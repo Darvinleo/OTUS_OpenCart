@@ -1,7 +1,11 @@
+import pytest
+import allure
 from helpers import get_existing_user
 from page_objects import MainPage
-import allure
 
+
+@pytest.mark.smoke
+@pytest.mark.regress
 @allure.feature("Login and Signing up")
 @allure.story("Sign up already existing user")
 @allure.severity(allure.severity_level.CRITICAL)

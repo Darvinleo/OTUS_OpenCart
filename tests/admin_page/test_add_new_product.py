@@ -1,10 +1,13 @@
-from page_objects import AdminPage
+import pytest
 import allure
+from page_objects import AdminPage
 
 # test data
 test_name = 'Test_Name'
 
 
+@pytest.mark.regress
+@pytest.mark.product
 @allure.feature("Admin Page")
 @allure.story("Add new product")
 @allure.severity(allure.severity_level.CRITICAL)

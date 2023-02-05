@@ -1,9 +1,11 @@
 import allure
-
+import pytest
 from helpers import data_logger, user_data_creator
 from page_objects import MainPage
 
 
+@pytest.mark.smoke
+@pytest.mark.regress
 @allure.feature("Login and Signing up")
 @allure.story("Sign up new user")
 @allure.severity(allure.severity_level.CRITICAL)
