@@ -1,4 +1,3 @@
-from random import randint
 import csv
 from random import randint
 from config.definitions import ROOT_DIR
