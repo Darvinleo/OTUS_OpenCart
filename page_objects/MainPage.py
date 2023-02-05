@@ -1,25 +1,21 @@
 from opencart_urls import Urls
 from locators import MainPageSelectors, RegPageSelectors
 from .BasePage import BasePage
+import allure
 
 
 class MainPage(BasePage):
     """Describing MainPage in PageObject"""
 
     def open(self):
+        with allure.step('Opening Main Page'):
+            pass
         self.driver.get(Urls.main)
         return MainPage(self.driver)
 
-    def visit_login(self):
-        self._click(MainPageSelectors.TopNav.admin_links, 1)  # Click to My Account
-        self._click(MainPageSelectors.TopNav.login_btn)
-        pass
-
-    def visit_sign_up(self):
-        self._click(MainPageSelectors.TopNav.admin_links, 1)
-        self._click(MainPageSelectors.TopNav.register_btn)
-
     def sign_up(self, data: dict):
+        with allure.step('Filling new user info on "sign up page"'):
+            pass
         self._input(RegPageSelectors.PersonalDetails.first_name, data['first_name'])
         self._input(RegPageSelectors.PersonalDetails.last_name, data['last_name'])
         self._input(RegPageSelectors.PersonalDetails.email, data['email'])

@@ -1,7 +1,12 @@
+import allure
+
 from helpers import data_logger, user_data_creator
 from page_objects import MainPage
 
 
+@allure.feature("Login and Signing up")
+@allure.story("Sign up new user")
+@allure.severity(allure.severity_level.CRITICAL)
 def test_sign_up(driver):
     """This test will check if we can create new user"""
     new_user = user_data_creator()  # Take random name from fixture for current test

@@ -1,9 +1,13 @@
 from page_objects import AdminPage
+import allure
 
 # test data
 test_name = 'Test_Name'
 
 
+@allure.feature("Admin Page")
+@allure.story("Add new product")
+@allure.severity(allure.severity_level.CRITICAL)
 def test_admin_add_new_product(driver):
     AdminPage(driver) \
         .open() \

@@ -1,6 +1,8 @@
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from locators.main_page_selectors import MainPageSelectors
+import allure
 
 
 class BasePage:
@@ -30,3 +32,16 @@ class BasePage:
 
     def _get_element_text(self, selector, index=0):
         return self.__element(selector, index).text
+
+    def visit_login(self):
+        with allure.step('Go to login page'):
+            pass
+        self._click(MainPageSelectors.TopNav.admin_links, 1)  # Click to My Account
+        self._click(MainPageSelectors.TopNav.login_btn)
+        pass
+
+    def visit_sign_up(self):
+        with allure.step('Go to "sign up" page'):
+            pass
+        self._click(MainPageSelectors.TopNav.admin_links, 1)
+        self._click(MainPageSelectors.TopNav.register_btn)

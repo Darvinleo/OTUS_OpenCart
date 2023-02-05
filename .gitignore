@@ -4,4 +4,5 @@
 *.pylintrc
 *__pycache__/
 *.log
+allure-report/
 venv

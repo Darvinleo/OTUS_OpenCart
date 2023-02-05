@@ -1,6 +1,10 @@
 from helpers import get_existing_user
 from page_objects import MainPage
+import allure
 
+@allure.feature("Login and Signing up")
+@allure.story("Sign up already existing user")
+@allure.severity(allure.severity_level.CRITICAL)
 def test_sign_up_existing_user(driver):
     """Check that we cannot create user with the same email"""
     existing_user = get_existing_user()
