@@ -16,8 +16,8 @@ class MainPage(BasePage):
     def sign_up(self, data: dict):
         with allure.step('Filling new user info on "sign up page"'):
             pass
-        self._input(RegPageSelectors.PersonalDetails.first_name, data['first_name'])
-        self._input(RegPageSelectors.PersonalDetails.last_name, data['last_name'])
+        self._input(RegPageSelectors.PersonalDetails.first_name, data['firstname'])
+        self._input(RegPageSelectors.PersonalDetails.last_name, data['lastname'])
         self._input(RegPageSelectors.PersonalDetails.email, data['email'])
         self._input(RegPageSelectors.PersonalDetails.password, data['password'])
         self._click(RegPageSelectors.input_newsletter_yes)

@@ -5,5 +5,6 @@
 *.pylintrc
 *__pycache__/
 *.log
+test_data/users.csv
 allure-report/
 venv

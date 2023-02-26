@@ -1,0 +1,17 @@
+{
+  "test_user_1": {
+    "customer_group_id": 1,
+    "language_id": 1,
+    "firstname": "first_test_name",
+    "lastname": "first_test_lastname",
+    "email": "test_email@mail.com",
+    "telephone": "",
+    "password": "123456",
+    "custom_field": "",
+    "ip": "172.22.0.1",
+    "status": 1,
+    "safe": 0,
+    "token": "",
+    "code": "1"
+  }
+}

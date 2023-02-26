@@ -30,7 +30,7 @@ class TestCreateAndDeleteProduct:
             .filter_product(test_name)
         assert test_name in AdminPage(driver).get_filtered_products_list()
 
-    # @pytest.mark.dependency(depends=["TestCreateAndDeleteProduct::test_admin_add_new_product"])
+    @pytest.mark.dependency(depends=["TestCreateAndDeleteProduct::test_admin_add_new_product"])
     @allure.story("Delete product")
     @allure.severity(allure.severity_level.CRITICAL)
     def test_del_product(self, driver):
