@@ -1,4 +1,4 @@
-# Need Python 3.10 or higher
+# Need Python >=3.10
 pytest>=7.2.1
 allure-pytest>=2.12.0
 selenium>=4.8.2

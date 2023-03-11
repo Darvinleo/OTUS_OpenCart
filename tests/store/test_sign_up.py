@@ -8,7 +8,6 @@ from page_objects import MainPage
 @pytest.mark.regress
 @allure.feature("Signing up")
 class TestSignUP:
-    @pytest.mark.dependency()
     @allure.story("Sign up new user")
     @allure.severity(allure.severity_level.CRITICAL)
     def test_sign_up(self, driver, check_user_exist_in_db, del_user_from_db):
@@ -23,8 +22,8 @@ class TestSignUP:
 
     @allure.story("Sign up already existing user")
     @allure.severity(allure.severity_level.CRITICAL)
-    def test_sign_up_existing_user(self, driver, insert_test_user_in_db):
+    def test_sign_up_existing_user(self, driver, test_user):
         MainPage(driver).open()
         MainPage(driver).visit_sign_up()
-        MainPage(driver).sign_up(insert_test_user_in_db)
+        MainPage(driver).sign_up(test_user)
         assert MainPage(driver).get_alert_text() == "Warning: E-Mail Address is already registered!"

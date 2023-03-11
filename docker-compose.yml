@@ -1,13 +1,5 @@
-version: '2'
+version: '3'
 services:
-  phpadmin:
-    image: phpmyadmin
-    environment:
-      - PMA_HOST=mariadb
-      - PMA_PORT=3306
-      - PMA_USER=bn_opencart
-    ports:
-      - '8080:80'
   mariadb:
     image: docker.io/bitnami/mariadb:10.6
     environment:
@@ -39,7 +31,6 @@ services:
       - 'opencart_storage_data:/bitnami/opencart_storage/'
     depends_on:
       - mariadb
-      - phpadmin
 volumes:
   mariadb_data:
     driver: local
@@ -47,3 +38,4 @@ volumes:
     driver: local
   opencart_storage_data:
     driver: local
+

@@ -1,8 +1,10 @@
+import allure
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import StaleElementReferenceException
 from locators.main_page_selectors import MainPageSelectors
-import allure
 
 
 class BasePage:
@@ -28,7 +30,9 @@ class BasePage:
         return WebDriverWait(self.driver, wait).until(EC.visibility_of(self.__element(selector, index)))
 
     def _wait_for_presence(self, selector):
-        WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(selector))
+        ignored_exceptions = (NoSuchElementException, StaleElementReferenceException,)
+        WebDriverWait(self.driver, 5, ignored_exceptions=ignored_exceptions) \
+            .until(EC.presence_of_element_located(selector))
 
     def _get_element_text(self, selector, index=0):
         return self.__element(selector, index).text
