@@ -35,7 +35,7 @@ class AdminPage(BasePage):
         self._click(AdminSelectors.Menu.Catalog.add_new_btn)
         return AdminPage(self.driver)
 
-    def filter_product(self, name='', model='', price='', quantity: int = 0, status=''):
+    def filter_product(self, name=''):
         with allure.step(f'Trying to filter {name}'):
             pass
         self._input(AdminSelectors.Filter.product_name, name)
@@ -66,32 +66,3 @@ class AdminPage(BasePage):
         with allure.step('Getting alert text'):
             pass
         return self._get_element_text(AdminSelectors.AddProduct.alert)
-
-    class AddNewProduct(BasePage):
-
-        def fill_general_tab_fields(self):
-            with allure.step("Filling with test data general tab fields"):
-                pass
-            self._input(AdminSelectors.AddProduct.General.product_name, 'Test_Name')  # need test data
-            self._input(AdminSelectors.AddProduct.General.product_meta, 'Test_Meta')  # need test data
-            return AdminPage.AddNewProduct(self.driver)
-
-        def fill_data_tab_fields(self):
-            with allure.step('Filling with test data "data" tab fields'):
-                pass
-            self._click(AdminSelectors.AddProduct.Data.data_tab)
-            self._input(AdminSelectors.AddProduct.Data.model, 'Model')  # need test data
-            return AdminPage.AddNewProduct(self.driver)
-
-        def fill_seo_tab_fields(self):
-            with allure.step('Filling with test data "seo" tab fields'):
-                pass
-            self._click(AdminSelectors.AddProduct.SEO.seo_tab)
-            self._input(AdminSelectors.AddProduct.SEO.default, 'Unique_value')  # need test data
-            return AdminPage.AddNewProduct(self.driver)
-
-        def admin_save_new_item(self):
-            with allure.step('Clicking on "save new item" button'):
-                pass
-            self._click(AdminSelectors.AddProduct.save_btn)
-            return AdminPage.AddNewProduct(self.driver)

@@ -9,13 +9,3 @@ def user_data_creator() -> dict:
         'password': '123456'
     }
     return user_data
-
-# def get_existing_user() -> dict:
-#     """Extracting credentials of user that was previously created and stores in test_data/users.csv"""
-#     with open(f"{ROOT_DIR}/test_data/users.csv", 'r', encoding='UTF-8') as users:
-#         reader = csv.DictReader(users)
-#         user = {}
-#         for row in reader:
-#             user = row
-#             break
-#         return user

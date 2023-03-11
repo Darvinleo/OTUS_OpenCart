@@ -1,7 +1,7 @@
+import allure
 from opencart_urls import Urls
 from locators import MainPageSelectors, RegPageSelectors
 from .BasePage import BasePage
-import allure
 
 
 class MainPage(BasePage):
