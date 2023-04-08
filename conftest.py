@@ -16,7 +16,7 @@ def pytest_addoption(parser):
                      default='true', help='Headless Mode [true/false]')
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='session')
 def driver(request):
     """Start chosen browser and close after work"""
     browser = request.config.getoption('browser')
@@ -29,6 +29,9 @@ def driver(request):
             chrome_options.add_argument("--no-sandbox")
             chrome_options.add_argument("--start-maximized")
             chrome_options.add_argument("--window-size=1920,1080")
+            chrome_options.add_argument('--ignore-ssl-errors=yes')
+            chrome_options.add_argument('--ignore-certificate-errors')
+            chrome_options.add_argument('--disable-dev-shm-usage')
             driver = webdriver.Chrome(options=chrome_options)
         case 'firefox':
             firefox_options = FirefoxOptions()
