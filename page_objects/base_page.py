@@ -17,7 +17,6 @@ class BasePage:
         return f"Can't find element with locator {selector}" if element == [] else element[index]
 
     def _click(self, selector, index=0):
-        """click on selected element"""
         self._wait_for_visible(selector, index)
         ActionChains(self.driver).move_to_element(self.__element(selector, index)).click().perform()
 
@@ -40,7 +39,7 @@ class BasePage:
     def visit_login(self):
         with allure.step('Go to login page'):
             pass
-        self._click(MainPageSelectors.TopNav.admin_links, 1)  # Click to My Account
+        self._click(MainPageSelectors.TopNav.admin_links, 1)
         self._click(MainPageSelectors.TopNav.login_btn)
         pass
 

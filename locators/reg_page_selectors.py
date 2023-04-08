@@ -10,6 +10,7 @@ class RegPageSelectors:
         last_name = (el_id, "input-lastname")
         email = (el_id, "input-email")
         password = (el_id, "input-password")
+
     input_newsletter_yes = (el_id, "input-newsletter-yes")
     input_newsletter_no = (el_id, "input-newsletter-no")
     agree = (css, "input[name=agree]")

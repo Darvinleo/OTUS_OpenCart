@@ -1,6 +1,6 @@
 import allure
 from locators import AdminSelectors
-from .BasePage import BasePage
+from .base_page import BasePage
 
 
 class AddNewProduct(BasePage):

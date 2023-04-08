@@ -1,21 +1,19 @@
 import allure
 from locators import AdminSelectors
-from opencart_urls import Urls
-from .BasePage import BasePage
+from .base_page import BasePage
 
 
 class AdminPage(BasePage):
-    """Describing administration page in PageObject style"""
+    url = "http://localhost/administration/"
 
     def open(self):
-        self.driver.get(Urls.administration)
-        with allure.step(f"Open page {Urls.administration}"):
-            assert self.driver.current_url == Urls.administration, \
-                f"Current url is not {Urls.administration}"
+        self.driver.get(self.url)
+        with allure.step(f"Open page {self.url}"):
+            assert self.driver.current_url == self.url, f"Current url is not {self.url}"
         return AdminPage(self.driver)
 
     def login(self):
-        with allure.step("Login Admininistration page"):
+        with allure.step("Login Administration page"):
             pass
         self._input(AdminSelectors.Login.user, 'user')
         self._input(AdminSelectors.Login.password, 'bitnami')

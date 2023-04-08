@@ -1,12 +1,9 @@
-import datetime
-import json
-import os
 import pytest
 import pymysql
+import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
-from config import ROOT_DIR
 
 
 def pytest_addoption(parser):
@@ -53,7 +50,6 @@ def driver(request):
 
 @pytest.fixture(scope='module')
 def connect_db(request):
-    """Connect to MariaDB before test and close connection after"""
     connection = pymysql.connect(host="localhost", port=3306, user="bn_opencart", passwd="",
                                  database="bitnami_opencart")
     request.addfinalizer(connection.close)
@@ -61,49 +57,13 @@ def connect_db(request):
 
 
 @pytest.fixture(scope='function')
-def test_user(request, insert_into_table, del_user_from_db):
-    """Inserting test user in database and delete after test"""
-    date_added = datetime.datetime.now().strftime("%Y-%m-%d %I:%M:%S")
-    with open(f'{ROOT_DIR}/test_data/test_users.json') as test_data:
-        user = {'date_added': date_added} | json.load(test_data)['test_user_1']
-    insert_into_table(user, 'oc_customer')
-
-    def del_user():
-        del_user_from_db(user['email'])
-
-    request.addfinalizer(del_user)
-    return user
-
-
-@pytest.fixture(scope='function')
-def check_user_exist_in_db(connect_db):
-    def check_user_by_email(email: str):
-        query = f'SELECT * FROM oc_customer WHERE email=(%s)'
-        sql = connect_db.cursor().execute(query, email)
-        assert sql, f'User with email "{email}" does not exist in opencart database!'
-
-    return check_user_by_email
-
-
-@pytest.fixture(scope='function')
-def del_user_from_db(connect_db):
-    def del_user_by_email(email: str):
-        sql_query = f'DELETE FROM oc_customer WHERE email=(%s)'
-        connect_db.cursor().execute(sql_query, email)
-        connect_db.commit()
-        check_query = f'SELECT * FROM oc_customer WHERE email=%s'
-        assert not connect_db.cursor().execute(check_query, email), "User somehow still exist in database"
-
-    return del_user_by_email
-
-
-@pytest.fixture(scope='function')
-def insert_into_table(connect_db):
-    def insert(data: dict, table_name: str) -> None:
-        fields = ', '.join(list(data.keys()))
-        values = '%s, ' * len(data)
-        query = f"INSERT INTO {table_name} ({fields}) VALUES ({values[:-2]})"
-        connect_db.cursor().execute(query, tuple(data.values()))
+def insert_data_in_db(connect_db):
+    def inserter(data: dict, t_name: str):
+        cursor = connect_db.cursor()
+        columns = f"({', '.join(list(data.keys()))})"
+        values = tuple(val for val in data.values())
+        sql_query = f"INSERT INTO {t_name} {columns} VALUES ({'%s,' * len(data)}"[:-1] + ")"
+        cursor.execute(sql_query, values)
         connect_db.commit()
 
-    return insert
+    return inserter

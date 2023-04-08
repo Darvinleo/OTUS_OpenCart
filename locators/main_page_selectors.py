@@ -3,6 +3,7 @@ from .common_selectors import css, link_text, el_id
 
 class MainPageSelectors:
     alert = (css, "div.alert-dismissible")
+
     class TopNav:
         nav_float_start = (css, "div.nav.float-start")
         admin_links = (css, "#top .float-end ul > li")
@@ -26,4 +27,3 @@ class MainPageSelectors:
     class Footer:
         footer_blocks = (css, "footer > div > div")
         footer_bottom = (css, "footer > div > p")
-        
