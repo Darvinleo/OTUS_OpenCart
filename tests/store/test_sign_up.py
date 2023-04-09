@@ -10,7 +10,7 @@ class TestSignUP:
     @allure.story("Sign up new user")
     @allure.severity(allure.severity_level.CRITICAL)
     def test_sign_up(self, driver, test_user, check_user_in_db, del_user_from_db):
-        new_user = test_user
+        new_user = test_user()
         MainPage(driver).open()
         MainPage(driver).visit_sign_up()
         MainPage(driver).sign_up(new_user)
@@ -22,7 +22,7 @@ class TestSignUP:
     @allure.story("Sign up already existing user")
     @allure.severity(allure.severity_level.CRITICAL)
     def test_sign_up_existing_user(self, driver, add_user_in_db):
-        user = add_user_in_db
+        user = add_user_in_db[0]
         MainPage(driver).open()
         MainPage(driver).visit_sign_up()
         MainPage(driver).sign_up(user)

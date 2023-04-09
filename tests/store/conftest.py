@@ -3,36 +3,50 @@ import datetime
 
 
 @pytest.fixture(scope='function')
-def test_user(faker, request) -> dict:
-    """Return dict with test data of fake user"""
-    user = {"date_added": datetime.datetime.now().strftime('%Y-%m-%d %I:%M:%S'),
-            "customer_group_id": 1,
-            "language_id": 1,
-            "firstname": faker.first_name(),
-            "lastname": faker.last_name(),
-            "email": faker.email(),
-            "telephone": faker.phone_number(),
-            "password": faker.password(length=10),
-            "custom_field": "",
-            "ip": faker.ipv4_public(),
-            "status": 1,
-            "safe": 0,
-            "token": "",
-            "code": 1
-            }
-    return user
+def test_user(faker):
+    def make():
+        user = {"date_added": datetime.datetime.now().strftime('%Y-%m-%d %I:%M:%S'),
+                "customer_group_id": 1,
+                "language_id": 1,
+                "firstname": faker.unique.first_name(),
+                "lastname": faker.unique.last_name(),
+                "email": faker.unique.email(),
+                "telephone": faker.unique.phone_number(),
+                "password": faker.unique.password(length=10),
+                "custom_field": "",
+                "ip": faker.unique.ipv4_public(),
+                "status": 1,
+                "safe": 0,
+                "token": "",
+                "code": 1
+                }
+        return user
+
+    return make
 
 
 @pytest.fixture(scope='function')
-def add_user_in_db(request, test_user, insert_data_in_db, check_user_in_db, del_user_from_db) -> dict:
-    def del_user():
-        del_user_from_db(user['email'])
+def add_user_in_db(request, test_user, insert_data_in_db, check_user_in_db, del_user_from_db) -> list:
+    """
+        Add test user in db and return list with users, by default generate only 1 user
+        support for `@pytest.mark.num_users(<some number>)
+    """
 
-    user = test_user
-    insert_data_in_db(user, 'oc_customer')
-    check_user_in_db(user['email'])
-    request.addfinalizer(del_user)
-    return user
+    def del_users():
+        for u in users:
+            del_user_from_db(u['email'])
+
+    m = request.node.get_closest_marker("num_users")
+    if m and len(m.args) > 0:
+        num_users = m.args[0]
+    else:
+        num_users = 1
+    users = [test_user() for _ in range(num_users)]
+    for user in users:
+        insert_data_in_db(user, 'oc_customer')
+        check_user_in_db(user['email'])
+    request.addfinalizer(del_users)
+    return users
 
 
 @pytest.fixture(scope='function')
