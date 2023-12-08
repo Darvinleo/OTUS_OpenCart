@@ -18,6 +18,7 @@ def test_product(faker):
             "quantity": 1,
             "stock_status_id": 5,
             "image": "",
+            "rating": faker.random.randint(1, 10),
             "manufacturer_id": 11,
             "tax_class_id": 0,
             'date_available': datetime.datetime.now().strftime("%Y-%m-%d"),

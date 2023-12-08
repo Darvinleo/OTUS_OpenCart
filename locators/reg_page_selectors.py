@@ -11,8 +11,7 @@ class RegPageSelectors:
         email = (el_id, "input-email")
         password = (el_id, "input-password")
 
-    input_newsletter_yes = (el_id, "input-newsletter-yes")
-    input_newsletter_no = (el_id, "input-newsletter-no")
+    input_newsletter = (el_id, "input-newsletter")
     agree = (css, "input[name=agree]")
     submit_btn = (css, "button[type=submit]")
     alert = (css, "#alert div")

@@ -1,8 +1,8 @@
-from .common_selectors import css, link_text, el_id
+from .common_selectors import css, link_text, el_id, xpath
 
 
 class MainPageSelectors:
-    alert = (css, "div.alert-dismissible")
+    alert = (xpath, '//*[@id="alert"]/dirv')
 
     class TopNav:
         nav_float_start = (css, "div.nav.float-start")

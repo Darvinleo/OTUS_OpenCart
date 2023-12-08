@@ -19,7 +19,7 @@ class MainPage(BasePage):
         self._input(RegPageSelectors.PersonalDetails.last_name, user_data['lastname'])
         self._input(RegPageSelectors.PersonalDetails.email, user_data['email'])
         self._input(RegPageSelectors.PersonalDetails.password, user_data['password'])
-        self._click(RegPageSelectors.input_newsletter_yes)
+        self._click(RegPageSelectors.input_newsletter)
         self._click(RegPageSelectors.agree)
         self._click(RegPageSelectors.submit_btn)
 

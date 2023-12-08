@@ -10,7 +10,7 @@ def pytest_addoption(parser):
     parser.addoption('--browser', '-B', action='store',
                      default='chrome', help='Choose Browser [firefox/chrome]')
     parser.addoption('--headless', '-H', action='store',
-                     default='true', help='Headless Mode [true/false]')
+                     default='false', help='Headless Mode [true/false]')
 
 
 @pytest.fixture(scope='session')
