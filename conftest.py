@@ -2,6 +2,10 @@ import pytest
 import pymysql
 import os
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
@@ -10,7 +14,7 @@ def pytest_addoption(parser):
     parser.addoption('--browser', '-B', action='store',
                      default='chrome', help='Choose Browser [firefox/chrome]')
     parser.addoption('--headless', '-H', action='store',
-                     default='false', help='Headless Mode [true/false]')
+                     default='true', help='Headless Mode [true/false]')
 
 
 @pytest.fixture(scope='session')
@@ -29,7 +33,7 @@ def driver(request):
             chrome_options.add_argument('--ignore-ssl-errors=yes')
             chrome_options.add_argument('--ignore-certificate-errors')
             chrome_options.add_argument('--disable-dev-shm-usage')
-            driver = webdriver.Chrome(options=chrome_options)
+            driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
         case 'firefox':
             firefox_options = FirefoxOptions()
             if headless_mode == 'true':
@@ -38,7 +42,7 @@ def driver(request):
             os.environ['MOZ_HEADLESS_HEIGHT'] = '1080'
             firefox_options.add_argument("--width=1920")
             firefox_options.add_argument("--height=1080")
-            driver = webdriver.Firefox(options=firefox_options)
+            driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=firefox_options)
         case _:
             raise ValueError(f"Can't open browser with name{browser}, 'chrome' or 'firefox' only available'")
     driver.maximize_window()
